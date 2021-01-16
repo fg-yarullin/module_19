@@ -1,0 +1,36 @@
+---
+ip: "192.168.10.42"
+memory: 2048
+cpus: 2
+provider: virtualbox
+name: PHP Backend
+
+authorize: ~/.ssh/id_rsa.pub
+
+keys:
+    - ~/.ssh/id_rsa
+
+folders:
+    - map: ~/code/application
+      to: /home/vagrant/code/application
+      
+sites:
+    - map: application.local
+      to: /home/vagrant/code/application/public
+
+databases:
+    - homestead
+
+features:
+    - mariadb: false
+    - ohmyzsh: false
+    - webdriver: false
+
+default_ssh_port: 2242
+
+ports:
+    - send: 4430
+      to: 443
+# настройки ниже не изменяют default_ssh_port
+#    - send: 2242
+#      to: 22
